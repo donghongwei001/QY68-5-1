@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd"><struts>
+	<package name="default4" extends="struts-default" >
+		<interceptors>
+			<interceptor name="donginter" class="com.dong.interceptor.DongInterceptor">
+				<!-- 不拦截的方法 -->
+				<param name="excludeMethods">query,dengluyanzheng</param>
+			</interceptor>
+			<!-- 构建一个拦截器栈 -->
+			<interceptor-stack name="aaabbb">
+				<interceptor-ref name="donginter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		
+		<!-- 配置默认的拦截器 -->
+		<default-interceptor-ref name="aaabbb"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		<action name="dong_*" class="com.dong.action.dongAction" method="{1}">
+			<result name="ok" type="redirect">/index.jsp</result>
+		</action>
+		
+		</package>
+	
+	
+	
+	
+	<package name="hcbdefault1" extends="struts-default" >
+		
+	</package>
+	<package name="hcbdefault2" extends="struts-default" >
+	</package>
+	 <package name="default1" extends="struts-default">
+		<interceptors>
+			<interceptor name="honginter" class="com.dong.interceptor.DongInterceptor2">
+				<!-- 不拦截的方法 -->
+				<param name="excludeMethods">query,dengluyanzheng</param>
+			</interceptor>
+			<!-- 构建一个拦截器栈 -->
+			<interceptor-stack name="aaabbb">
+				<interceptor-ref name="honginter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		
+		<!-- 配置默认的拦截器 -->
+		<default-interceptor-ref name="aaabbb"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		<action name="hong_*" class="com.dong.action.DongAction2" method="{1}">
+			<result name="ok" type="redirect">/index.jsp</result>
+		</action>
+	</package>
+	<package name="default2" extends="struts-default">
+		<interceptors>
+			<interceptor name="weiinter" class="com.dong.interceptor.DongInterceptor3">
+				<!-- 不拦截的方法 -->
+				<param name="excludeMethods">query1,update,houtaidenglu,findfood,addshopcars</param>
+			</interceptor>
+			<!-- 构建一个拦截器栈 -->
+			<interceptor-stack name="aaabbb">
+				<interceptor-ref name="weiinter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		
+		<!-- 配置默认的拦截器 -->
+		<default-interceptor-ref name="aaabbb"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/admin/login/denglu.jsp</result>
+		</global-results>
+		
+	</package>
+	<package name="default" extends="struts-default">
+		
+	</package>
+	<package name="default5" extends="struts-default" >
+		<interceptors>
+			<interceptor name="donginter" class="com.dong.interceptor.Quanxianinterceptor">
+				<!-- 拦截的方法 -->
+				<param name="includeMethods">selac,findCook,query1,editEmp,changerole,addrole,addDishe,queryAllDishes,delDishe,editDishe,addEmp,queryEmp,delEmp,xiugaiquanxian,quanxian,jiaose,queryEmp,showTable,findFood,secFindFood,thrFindFood,queryAllDishes,seleAll,showAllCust</param>
+			</interceptor>
+			<!-- 构建一个拦截器栈 -->
+			<interceptor-stack name="aaabbb">
+				<interceptor-ref name="donginter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+		
+		<!-- 配置默认的拦截器 -->
+		<default-interceptor-ref name="aaabbb"></default-interceptor-ref>
+		<global-results>
+		<result name="lanjie" type="redirect">/lanjie.jsp</result>
+		</global-results>
+		
+		<action name="emp_*" method="{1}" class="com.dong.action.EmpAction">
+			<result name="flush">admin/products/Kitchen.jsp</result>
+			<result name="succ" type="redirect">admin/products/emp_list.jsp</result>
+			<result name="error">l.jsp</result>
+			<result name="edit">admin/products/emp_edit.jsp</result>
+		</action>
+		<action name="kitchen_*" method="{1}" class="com.dong.action.KitchenAction">
+			<result name="flush">admin/products/Kitchen.jsp</result>
+			<result name="pass" type="redirect">admin/products/Kitchen.jsp</result>
+			<result name="secpass" type="redirect">admin/products/kitchSec.jsp</result>
+			<result name="thrpass" type="redirect">admin/products/kitchThr.jsp</result>
+			<result name="error">l.jsp</result>
+		</action>
+		<action name="dishe_*" method="{1}" class="com.dong.action.DisheAction">
+			<result name="succ" type="redirect">admin/products/dishes_list.jsp</result>
+			<result name="error">l.jsp</result>
+			<result name="edit">admin/products/dishes_edit.jsp</result>
+		</action>
+		<action name="serv_*" method="{1}" class="com.dong.action.ServicePageAction">
+			<result name="succ" type="redirect">admin/products/servicer.jsp</result>
+			<result name="details">/admin/products/OrderDetails.jsp</result>
+			<result name="edit">admin/products/dishes_edit.jsp</result>
+		</action>
+		<action name="cust_*" method="{1}" class="com.dong.action.CustAction">
+			<result name="successs">/admin/products/cust_add.jsp</result>
+			
+		</action>
+		<action name="Table_*" method="{1}" class="com.dong.action.TableAction">
+			<result name="ss">/admin/products/table_list.jsp</result>
+			<result name="up">/admin/products/table_info.jsp</result>
+			<result name="error">l.jsp</result>
+		</action>
+		<action name="account_*" method="{1}" class="com.dong.action.accountAction">
+			<result name="acfun">/admin/products/account_list.jsp</result>
+			<result name="blili">/admin/products/account_info.jsp</result>
+		</action>
+		<action name="cook_*" method="{1}" class="com.dong.action.CookAction">
+			<result name="succ" type="redirect">admin/products/cook.jsp</result>
+			<result name="cook">admin/products/cook.jsp</result>
+			<result name="error">l.jsp</result>
+			<result name="edit">admin/products/cook_edit.jsp</result>
+		</action>
+		<action name="wei_*" class="com.dong.action.DongAction3" method="{1}">
+			<result name="ok" type="redirect">/admin/login/home.jsp</result>
+			<result name="error">/admin/products/money_list.jsp</result>
+			<result name="aaa">/admin/products/order_list.jsp</result>
+			<result name="cart">mainfood.jsp</result>
+		</action>
+	</package>
+	
+</struts>    
